@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-
+import Image from 'next/image'
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -15,11 +15,12 @@ const Header = () => {
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/">
               <span className="sr-only">Student Residence</span>
-              <img
-                className="h-12 w-auto"
+              <Image className="h-12 w-auto"
                 src="/logosf.png"
-                alt="Logo"
-              />
+                width={500}
+                height={500}
+                alt="Logo" />
+              
             </Link>
           </div>
           <div className="md:hidden">
@@ -57,11 +58,11 @@ const Header = () => {
         <div className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-100">
             <div className="px-5 pt-4 flex items-center justify-between">
-              <img
-                className="h-8 w-auto"
+            <Image className="h-12 w-auto"
                 src="/logosf.png"
-                alt="Logo"
-              />
+                width={500}
+                height={500}
+                alt="Logo" />
               <button
                 type="button"
                 className="bg-gray-50 rounded-md p-2 inline-flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"

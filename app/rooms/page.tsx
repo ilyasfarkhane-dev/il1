@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Layout from '../../components/Layout'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 import {
   Dialog,
   DialogContent,
@@ -44,7 +45,8 @@ export default function Rooms() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {rooms.map((room) => (
             <div key={room.id} className="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-              <img src={room.image} alt={room.name} className="w-full h-48 object-cover" />
+              <Image src={room.image}  width={500}
+      height={500} alt={room.name} className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h2 className="text-xl font-semibold mb-2">{room.name}</h2>
                 <p className="text-gray-600 mb-4">{room.description}</p>
@@ -67,7 +69,8 @@ export default function Rooms() {
             <DialogTitle>{selectedRoom?.name}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
-            <img src={selectedRoom?.image} alt={selectedRoom?.name} className="w-full h-48 object-cover rounded-md" />
+            <Image src={selectedRoom?.image} alt={selectedRoom?.name}  width={500}
+      height={500} className="w-full h-48 object-cover rounded-md" />
             <p>{selectedRoom?.description}</p>
             <p className="font-bold">${selectedRoom?.price}/month</p>
           </div>

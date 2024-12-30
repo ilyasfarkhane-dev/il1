@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { rooms } from '../../data/rooms'
+import Image from 'next/image'
 
 //const rooms = [
 //  {
@@ -79,7 +80,8 @@ export default function Payment() {
               <CardDescription>Room Details</CardDescription>
             </CardHeader>
             <CardContent>
-              <img src={room.image} alt={room.name} className="w-full h-48 object-cover rounded-md mb-4" />
+              <Image src={room.image} alt={room.name}  width={500}
+      height={500} className="w-full h-48 object-cover rounded-md mb-4" />
               <p className="mb-2">{room.description}</p>
               <p className="font-bold text-lg">${room.price}/month</p>
             </CardContent>
@@ -138,7 +140,7 @@ export default function Payment() {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full">Complete Payment</Button>
+                <Button type="submit" className="w-full bg-yellow-400 hover:bg-yellow-600">Complete Payment</Button>
               </form>
             </CardContent>
           </Card>

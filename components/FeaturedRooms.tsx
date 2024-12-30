@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { rooms } from '../data/rooms'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 
 export default function FeaturedRooms() {
   const featuredRooms = rooms.slice(-4) // Get the last 4 rooms
@@ -17,9 +18,11 @@ export default function FeaturedRooms() {
               key={room.id}
               className="bg-white rounded-lg shadow-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl"
             >
-              <img
+              <Image
                 src={room.image}
                 alt={room.name}
+                width={500}
+                height={500}
                 className="w-full h-56 object-cover"
               />
               <div className="p-6 flex flex-col items-center">
