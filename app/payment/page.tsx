@@ -10,33 +10,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { rooms } from '../../data/rooms'
 import Image from 'next/image'
 
-//const rooms = [
-//  {
-//    id: 1,
-//    name: 'Single Room',
-//    description: 'Cozy single room with a comfortable bed and study area.',
-//    price: 500,
-//    image: '/placeholder.svg?height=300&width=400',
-//  },
-//  {
-//    id: 2,
-//    name: 'Double Room',
-//    description: 'Spacious double room perfect for sharing with a roommate.',
-//    price: 750,
-//    image: '/placeholder.svg?height=300&width=400',
-//  },
-//  {
-//    id: 3,
-//    name: 'Studio Apartment',
-//    description: 'Self-contained studio apartment with kitchenette and private bathroom.',
-//    price: 1000,
-//    image: '/placeholder.svg?height=300&width=400',
-//  },
-//]
+// Define a type for room structure
+type Room = {
+  id: number
+  name: string
+  description: string
+  price: number
+  image: string
+}
 
 export default function Payment() {
   const searchParams = useSearchParams()
-  const [room, setRoom] = useState(null)
+  const [room, setRoom] = useState<Room | null>(null) 
   const [paymentInfo, setPaymentInfo] = useState({
     cardNumber: '',
     expiryDate: '',
@@ -48,23 +33,22 @@ export default function Payment() {
     const roomId = searchParams.get('roomId')
     if (roomId) {
       const selectedRoom = rooms.find(r => r.id === parseInt(roomId))
-      setRoom(selectedRoom)
+      setRoom(selectedRoom || null) // Ensure it is either a valid room or null
     }
   }, [searchParams])
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setPaymentInfo(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Here you would typically process the payment
     console.log('Processing payment:', paymentInfo)
-    // After successful payment, you might want to redirect to a confirmation page
     alert('Payment processed successfully!')
   }
 
+  // Handle loading state when room is not found
   if (!room) {
     return <Layout><div className="container mx-auto px-4 py-8">Loading...</div></Layout>
   }
@@ -80,8 +64,7 @@ export default function Payment() {
               <CardDescription>Room Details</CardDescription>
             </CardHeader>
             <CardContent>
-              <Image src={room.image} alt={room.name}  width={500}
-      height={500} className="w-full h-48 object-cover rounded-md mb-4" />
+              <Image src={room.image} alt={room.name} width={500} height={500} className="w-full h-48 object-cover rounded-md mb-4" />
               <p className="mb-2">{room.description}</p>
               <p className="font-bold text-lg">${room.price}/month</p>
             </CardContent>
@@ -149,4 +132,3 @@ export default function Payment() {
     </Layout>
   )
 }
-
